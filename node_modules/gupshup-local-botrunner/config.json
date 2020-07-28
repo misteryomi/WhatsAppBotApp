@@ -1,0 +1,5 @@
+{
+  "dev": "dev-api.gupshup.io",
+  "prod": "api.gupshup.io",
+  "qa": "qa-api.gupshup.io"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "primerabot",
+  "version": "0.0.0",
+  "description": "Official bot of Primera MFBank",
+  "main": "./node_modules/gupshup-botrunner/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./node_modules/gupshup-local-botrunner/index.js",
+    "deploy": "node ./node_modules/gupshup-local-botrunner/deploy.js"
+  },
+  "author": {
+    "name": "Primera mfbank",
+    "email": "yomiomotoso@gmail.com",
+    "url": ""
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bot-script": "^3.6.4",
+    "gupshup-local-botrunner": "^1.2.5"
+  }
+}
