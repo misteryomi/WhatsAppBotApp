@@ -1,6 +1,14 @@
 var botScriptExecutor = require('bot-script').executor;
 var scr_config = require('./scr_config.json');
 
+const default_message = `
+We cannot find a matching response.
+
+If you would like to speak to one of our account officers, kindly drop your full name and email address. One of our staff would get will get in touch with you shortly
+
+-----
+Type *Home* to return to the *main menu*
+`
 
 function MessageHandler(context, event) {
     ScriptHandler(context, event);
@@ -15,9 +23,9 @@ function EventHandler(context, event) {
 function ScriptHandler(context, event) {
     var options = Object.assign({}, scr_config);
     options.current_dir = __dirname;
-    options.default_message = "Sorry I am young and still learning. I am unable to understand your query.";
+    options.default_message = default_message;
     // You can add any start point by just mentioning the <script_file_name>.<section_name>
-    // options.start_section = "default.main";
+    options.start_section = "default.main";
     options.success = function (opm) {
         context.sendResponse(JSON.stringify(opm));
     };
