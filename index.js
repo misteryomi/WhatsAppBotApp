@@ -6,7 +6,7 @@ Sorry, we cannot find a matching response.
 `
 // -----
 // // Type *Hello* to return to the *main menu*
-// If you would like to speak to one of our account officers, kindly drop your full name and email address. One of our staff would get will get in touch with you shortly
+// If you would like to speak to one of our account officers, kindly drop your full name and email address. One of our staff would get in touch with you shortly
 
 async function MessageHandler(context, event) {
     var options = Object.assign({}, scr_config);
