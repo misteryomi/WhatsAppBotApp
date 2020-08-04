@@ -1,0 +1,28 @@
+[main]
+init:Welcome to New Bot.
+    thisFlow: Hi
+        This is a output of this flow.
+    callAnotherFlow: menu
+        :call default.anotherFlow
+    callFedFlow: federal
+        :call default.federal
+
+[anotherFlow]
+    This is another flow.[[Wow, No]]
+        Wow
+            Thanks :return
+        No
+            Oh! :return
+
+[federal]
+Kindly input your IPPIS number:
+    Netpay
+        What is your average monthly net pay? :return
+            Loan_amount
+                How much do you need as loan? :return
+                    Loan_tenor
+                        Loan tenor (maximum tenor is 18 months) :return
+                            Full_name
+                                Kindly confirm your name and surname: :return
+                                    Close_session
+                                        Thank you for reaching out. \n\nOne of our relationship officers will get in touch with you shortly. :return

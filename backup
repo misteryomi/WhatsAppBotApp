@@ -1,0 +1,67 @@
+[main]
+ init: Welcome to Primera MFBank. Your partner for growth. \n\nHow may we help you today? \n*1.* For Loan enquiries\n*2.* For Fixed deposit enquiries\n*3.* For Savings\n*4.* For Complaints   :defex
+    Hello|good|day|hello|hi|morning|afternoon|evening|hlo|gd|home
+       \n\nHello! How can we be of help? \n*1.* For Loan enquiries\n*2.* For Fixed deposit enquiries\n*3.* For Savings\n*4.* For Complaints       
+            1
+                Thank you for choosing *loan enquiries*.\nPlease select an option:\n\nType *5* For Federal Service Servant\nType *6* For Lagos State Employee\nType *7.* For Private Sector Employee\nType *8* For Small Business Owners\nType *9.* For Other Loan enquiries\n\n-----\nType *Hello* to return to the *main menu*
+            2
+                Thank you for choosing our *fixed deposit investment*.\nOur minimum amount is 250,000 over 2 months.\n\nPlease see our rate guide below:\n\nN250,000 - N999,999 : 6.5% (60 days), 8.5% (90 days) and 9.5% (180 days)\nN1,000,000 - N9,999,999 : 7.5% (60 days), 9.5% (90 days) and 10.5% (180 days)\nN10,000,000 - N49,999,999 : 9.0% (60 days), 11.0% (90 days) and 11.5% (180 days)\nN50,000,000 - N99,999,999 : 10.0% (60 days), 12.0% (90 days) and 12.5% (180 days)\nN100,000,000 - N499,999,999 : 11.0% (60 days), 13.0% (90 days) and 13.5% (180 days)\nN500,000,000 - Above : Negotiable (60 days), Negotiable (90 days)\n\nIf you would like to speak to one of our account officers, kindly drop your full name and email address. One of our staff would get will get in touch with you shortly.\n\n-----\nType *Hello* to return to the *main menu* :goto init
+
+            3
+                Thank you for choosing our *Target savings option*\n\nOur minimum amount is 5,000 and the minimum savings period is 3 months.\nOur interest rate is 10 percent per annum.\n\nIf you would like to speak to one of our account officers, kindly drop your full name and email address. One of our staff would get in touch with you shortly\n\nThank You\n\n-----\nType *Hello* to return to the *main menu*  :goto init
+
+            4
+                Hi there!\n\nWe would like to hear your complaints, if any.\n\nKindly drop your complaint alongside your name and email. One of our staff would get in touch with you shortly.\n\nThank You.\n\n-----\nType *Hello* to return to the *main menu*  :goto init
+
+            5
+                You selected the *Federal* option: :call default.federal
+                    Do have a great day! :goto init
+            6
+                You selected the *State* option: :call default.state
+                    Do have a great day! :goto init
+            7
+                You selected the *Lagos* option: :call default.lagos
+                    Do have a great day! :goto init
+            8
+                Feature coming soon... :goto init
+            9
+                Feature coming soon... :goto init
+                    
+            blank: :onException
+                Sorry, I didn't quite get that. \n\n*1.* For Loan enquiries\n*2.* For Fixed deposit enquiries\n*3.* For Savings\n*4.* For Complaints  
+
+[federal]
+    Kindly input your IPPIS number:
+        Netpay
+            What is your average monthly net pay?
+                Loan_amount
+                    How much do you need as loan?
+                        Loan_tenor
+                            Loan tenor (maximum tenor is 18 months)
+                                Full_name
+                                    Kindly confirm your name and surname:
+                                        Close_session
+                                            Thank you for reaching out. \n\nOne of our relationship officers will get in touch with you shortly. :return
+
+[state]
+    Kindly input your Oracle number:
+        Netpay
+            What is your average monthly net pay?
+                Loan_amount
+                    How much do you need as loan?
+                        Loan_tenor
+                            Loan tenor (maximum tenor is 18 months)
+                                Full_name
+                                    Kindly confirm your name and surname:
+                                        Close_session
+                                            Thank you for reaching out. \n\nOne of our relationship officers will get in touch with you shortly.  :return
+
+[lagos]
+    What industry do you work?
+        Confirmed
+            Are you a confirmed staff?
+                Loan_amount
+                    Kindly confirm your name and surname:
+                        Close_session
+                            Thank you for reaching out. \n\nOne of our relationship officers will get in touch with you shortly.:return
+

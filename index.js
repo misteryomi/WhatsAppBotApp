@@ -1,17 +1,32 @@
 var botScriptExecutor = require('bot-script').executor;
 var scr_config = require('./scr_config.json');
-
+const botResponse = require('./src/controllers/WhatsAppBotController');
 const default_message = `
-We cannot find a matching response.
-
-If you would like to speak to one of our account officers, kindly drop your full name and email address. One of our staff would get will get in touch with you shortly
-
------
-Type *Home* to return to the *main menu*
+Sorry, we cannot find a matching response.
 `
+// -----
+// // Type *Hello* to return to the *main menu*
+// If you would like to speak to one of our account officers, kindly drop your full name and email address. One of our staff would get will get in touch with you shortly
 
-function MessageHandler(context, event) {
-    ScriptHandler(context, event);
+async function MessageHandler(context, event) {
+    var options = Object.assign({}, scr_config);
+
+    options.current_dir = __dirname;
+    options.default_message = default_message;
+    // You can add any start point by just mentioning the <script_file_name>.<section_name>
+    options.start_section = "default.main";
+
+    context.console.log('here is the context', {context, event, options});
+
+    const response = await botResponse(context, event);
+    context.console.log(response);
+    // if(event.message.toLowerCase() === 'menu') {
+    //     var options = Object.assign({}, scr_config);
+    //     context.sendResponse('Display menu here');
+    // }
+        context.sendResponse(response);
+
+   // ScriptHandler(context, event, options);
 }
 
 function EventHandler(context, event) {
@@ -20,21 +35,22 @@ function EventHandler(context, event) {
 }
 
 
-function ScriptHandler(context, event) {
-    var options = Object.assign({}, scr_config);
-    options.current_dir = __dirname;
-    options.default_message = default_message;
-    // You can add any start point by just mentioning the <script_file_name>.<section_name>
-    options.start_section = "default.main";
+function ScriptHandler(context, event, options) {
+
+//    console.log('bot response', sendResponse(context));
+
+    console.log('latest options values', {options})
     options.success = function (opm) {
         context.sendResponse(JSON.stringify(opm));
     };
     options.error = function (err) {
-        context.console.log(err.stack);
-        context.sendResponse("Sorry Some error occurred.");
+        context.console.log('an error here =>', err.stack, err);
+        context.sendResponse(options.default_message);
     };
     botScriptExecutor.execute(options, event, context);
 }
+
+
 
 function HttpResponseHandler(context, event) {
     if (event.geturl === "http://ip-api.com/json")

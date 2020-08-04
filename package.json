@@ -16,6 +16,10 @@
   "license": "ISC",
   "dependencies": {
     "bot-script": "^3.6.4",
-    "gupshup-local-botrunner": "^1.2.5"
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "gupshup-local-botrunner": "^1.2.5",
+    "mysql": "^2.18.1",
+    "validator": "^13.1.1"
   }
 }

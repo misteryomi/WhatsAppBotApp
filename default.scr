@@ -1,61 +1,74 @@
 [main]
- Welcome to Primera MFBank. Your partner for growth. 
-    Hello
-         Welcome to Primera MFBank. Your partner for growth.\n\nHow may we help you today? \n*1.* For Loan enquiries\n*2.* For Fixed deposit enquiries\n*3.* For Savings\n*4.* For Complaints       
+init: Welcome to Primera MFBank. Your partner for growth. How may we help you today?\n\n*1.* For Loan enquiries\n*2.* For Fixed deposit enquiries\n*3.* For Savings\n*4.* For Complaints :defex
+    1
+        Thank you for choosing *loan enquiries*.\n :call default.loan
+    2
+        Thank you for choosing our *fixed deposit investment*.\nOur minimum amount is 250,000 over 2 months.\n\nPlease see our rate guide below:\n\nN250,000 - N999,999 : 6.5% (60 days), 8.5% (90 days) and 9.5% (180 days)\nN1,000,000 - N9,999,999 : 7.5% (60 days), 9.5% (90 days) and 10.5% (180 days)\nN10,000,000 - N49,999,999 : 9.0% (60 days), 11.0% (90 days) and 11.5% (180 days)\nN50,000,000 - N99,999,999 : 10.0% (60 days), 12.0% (90 days) and 12.5% (180 days)\nN100,000,000 - N499,999,999 : 11.0% (60 days), 13.0% (90 days) and 13.5% (180 days)\nN500,000,000 - Above : Negotiable (60 days), Negotiable (90 days)\n\nIf you would like to speak to one of our account officers, kindly drop your full name and email address. One of our staff would get will get in touch with you shortly.\n\n-----\nType *Home* to return to the *main menu* :return
 
-            1
-                Thank you for choosing *loan enquiries*.\nPlease select an option:\n\n*1.* For Federal Service Servant\n*2.* For Lagos State Employee\n*3.* For Private Sector Employee\n*4.* For Small Business Owners\n*5.* For Other Loan enquiries\n\n-----\nType *Home* to return to the *main menu*
+    3
+        Thank you for choosing our *Target savings option*\n\nOur minimum amount is 5,000 and the minimum savings period is 3 months.\nOur interest rate is 10 percent per annum.\n\nIf you would like to speak to one of our account officers, kindly drop your full name and email address. One of our staff would get in touch with you shortly\n\nThank You\n\n-----\nType *Home* to return to the *main menu* :return
 
-                    1
-                        You selected the *Federal* option: :call default.federal
-                    2
-                        You selected the *State* option: :call default.state
-                    3
-                        You selected the *Lagos* option: :call default.lagos
-                                                            
-            
-            2
-                Thank you for choosing our *fixed deposit investment*.\nOur minimum amount is 250,000 over 2 months.\n\nPlease see our rate guide below:\n\nN250,000 - N999,999 : 6.5% (60 days), 8.5% (90 days) and 9.5% (180 days)\nN1,000,000 - N9,999,999 : 7.5% (60 days), 9.5% (90 days) and 10.5% (180 days)\nN10,000,000 - N49,999,999 : 9.0% (60 days), 11.0% (90 days) and 11.5% (180 days)\nN50,000,000 - N99,999,999 : 10.0% (60 days), 12.0% (90 days) and 12.5% (180 days)\nN100,000,000 - N499,999,999 : 11.0% (60 days), 13.0% (90 days) and 13.5% (180 days)\nN500,000,000 - Above : Negotiable (60 days), Negotiable (90 days)\n\nIf you would like to speak to one of our account officers, kindly drop your full name and email address. One of our staff would get will get in touch with you shortly.\n\n-----\nType *Home* to return to the *main menu*
+    4
+        Hi there!\n\nWe would like to hear your complaints, if any.\n\nKindly drop your complaint alongside your name and email. One of our staff would get in touch with you shortly.\n\nThank You.\n\n-----\nType *Home* to return to the *main menu* :return
 
-            3
-                Thank you for choosing our *Target savings option*\n\nOur minimum amount is 5,000 and the minimum savings period is 3 months.\nOur interest rate is 10 percent per annum.\n\nIf you would like to speak to one of our account officers, kindly drop your full name and email address. One of our staff would get in touch with you shortly\n\nThank You\n\n-----\nType *Home* to return to the *main menu*
+    Hello|good|day|hi|morning|afternoon|evening|hlo|gd|home
+        How may we help you today? :call default.menu
 
-            4
-                Hi there!\n\nWe would like to hear your complaints, if any.\n\nKindly drop your complaint alongside your name and email. One of our staff would get in touch with you shortly.\n\nThank You.\n\n-----\nType *Home* to return to the *main menu*
+    blank: :onException
+        Sorry, I didn't quite get that. :call default.menu
 
+
+[menu]
+*1.* For Loan enquiries\n*2.* For Fixed deposit enquiries\n*3.* For Savings\n*4.* For Complaints :return
+
+[loan]
+Please select an option:\n\n*A.* For Federal Service Servant\n*B.* For Lagos State Employee\n*C.* For Private Sector Employee\n*D.* For Small Business Owners\n*E.* For Other Loan enquiries\n\n-----\nType *Home* to return to the *main menu*    
+    A
+        You have selected *Federal* option. :call default.federal
+    B
+        You selected the *State* option. :call default.state
+            Do have a great day!
+    C
+        You selected the *Lagos* option. :call default.lagos
+            Do have a great day!
+    D
+        Feature coming soon...
+    E
+        Feature coming soon...
 
 
 [federal]
     Kindly input your IPPIS number:
         Netpay
-            What is your average monthly net pay?
+            What is your average monthly net pay? 
                 Loan_amount
-                    How much do you need as loan?
+                    How much do you need as loan? 
                         Loan_tenor
-                            Loan tenor (maximum tenor is 18 months)
+                            Loan tenor (maximum tenor is 18 months) 
                                 Full_name
-                                    Kindly confirm your name and surname:
+                                    Kindly confirm your name and surname: 
                                         Close_session
-                                            Thank you for reaching out. \n\nOne of our relationship officers will get in touch with you shortly. \n\nDo have a great day! :return
+                                            Thank you for reaching out. \n\nOne of our relationship officers will get in touch with you shortly. :return
 
 [state]
-    Kindly input your Oracle number:
-        Netpay
-            What is your average monthly net pay?
-                Loan_amount
-                    How much do you need as loan?
-                        Loan_tenor
-                            Loan tenor (maximum tenor is 18 months)
-                                Full_name
-                                    Kindly confirm your name and surname:
-                                        Close_session
-                                            Thank you for reaching out. \n\nOne of our relationship officers will get in touch with you shortly. \n\nDo have a great day! :return
+Kindly input your Oracle number:
+    validate: Netpay
+        What is your average monthly net pay?
+            Loan_amount
+                How much do you need as loan?
+                    Loan_tenor
+                        Loan tenor (maximum tenor is 18 months)
+                            Full_name
+                                Kindly confirm your name and surname:
+                                    Close_session
+                                        Thank you for reaching out. \n\nOne of our relationship officers will get in touch with you shortly.  :return
 
 [lagos]
-    What industry do you work?
-        Confirmed
-            Are you a confirmed staff?
-                Loan_amount
-                    Kindly confirm your name and surname:
-                        Close_session
-                            Thank you for reaching out. \n\nOne of our relationship officers will get in touch with you shortly. \n\nDo have a great day! :return
+What industry do you work?
+    Confirmed
+        Are you a confirmed staff?
+            Loan_amount
+                Kindly confirm your name and surname:
+                    Close_session
+                        Thank you for reaching out. \n\nOne of our relationship officers will get in touch with you shortly. :return
+
