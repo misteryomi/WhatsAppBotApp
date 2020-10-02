@@ -4,7 +4,7 @@ Thank you for choosing *loan enquiries*.
 
 Please select an option:
 
-*1.* For Federal Service Servant
+*1.* For Federal Civil Servant
 *2.* For Lagos State Employee
 *3.* For Private Sector Employee
 *4.* For Small Business Owners

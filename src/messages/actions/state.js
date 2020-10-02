@@ -1,4 +1,4 @@
-const { initialize, saveOracleNumber, checkUserLoanAmount, saveUserNetPay, saveLoanTenor, saveFullName } = require("../../actions/stateAction");
+const { initialize, saveOracleNumber, checkUserLoanAmount, saveUserNetPay, saveLoanTenor, saveFullName, saveLocation } = require("../../actions/stateAction");
 
 module.exports = [
     {
@@ -30,16 +30,25 @@ module.exports = [
         feedback_type: 'input',
         actionService: checkUserLoanAmount,
         previous_action: "loan_amount",
+        next_action: "location"
+    },   
+    {
+        action: "location",
+        message: "What is your location?",
+        feedback_type: 'input',
+        actionService: saveLoanTenor,
+        previous_action: "loan_tenor",
         next_action: "full_name"
-    },        
+    },            
     {
         action: "full_name",
         message: "Kindly confirm your name and surname:",
         feedback_type: 'input',
-        actionService: saveLoanTenor,
-        previous_action: "loan_tenor",
+        actionService: saveLocation,
+        previous_action: "location",
         next_action: "close_session"
-    },        
+    },           
+  
     {
         action: "close_session",
         actionService: saveFullName,

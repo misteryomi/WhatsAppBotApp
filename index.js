@@ -16,7 +16,7 @@ async function MessageHandler(context, event) {
     // You can add any start point by just mentioning the <script_file_name>.<section_name>
     options.start_section = "default.main";
 
-    context.console.log('here is the context', {context, event, options});
+    // context.console.log('here is the context', {context, event, options});
 
     const response = await botResponse(context, event);
     context.console.log(response);
@@ -24,7 +24,7 @@ async function MessageHandler(context, event) {
     //     var options = Object.assign({}, scr_config);
     //     context.sendResponse('Display menu here');
     // }
-        context.sendResponse(response);
+    context.sendResponse(response);
 
    // ScriptHandler(context, event, options);
 }

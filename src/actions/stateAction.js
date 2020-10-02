@@ -1,6 +1,7 @@
-const{ initializeRequest, updateRecord } = require('../models/State');
+const{ initializeRequest, updateRecord, getRecord } = require('../models/State');
 const{ endSession } = require('../models/Session');
 const validator = require('validator');
+const sendMail = require('./sendMail');
 
  const initialize = (phone_no, action, next_action, oracle, session_hash) => {
 
@@ -50,9 +51,23 @@ const validator = require('validator');
     updateRecord(phone_no, action, value, session_hash);
 }
 
- const saveFullName = (phone_no, action, next_action, value, session_hash) => {
+
+const saveLocation = (phone_no, action, next_action, value, session_hash) => {
 
     updateRecord(phone_no, action, value, session_hash);
+}
+
+ const saveFullName = async (phone_no, action, next_action, value, session_hash) => {
+
+    updateRecord(phone_no, action, value, session_hash);
+
+    let record = await getRecord(session_hash);
+
+    if (record) {
+        record = record[0];
+        sendMail(record, 'State', false);    
+    }
+
     endSession(phone_no, session_hash);
 }
 
@@ -63,5 +78,6 @@ module.exports = {
     saveUserNetPay,
     checkUserLoanAmount,
     saveLoanTenor,
-    saveFullName
+    saveFullName,
+    saveLocation
 }

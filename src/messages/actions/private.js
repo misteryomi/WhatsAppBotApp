@@ -1,9 +1,9 @@
-const  { initialize, saveIsConfirmed, saveIndustry, saveFullName } = require("../../actions/privateAction");
+const  { initialize, saveIsConfirmed, saveIndustry, saveFullName, saveLocation } = require("../../actions/privateAction");
 
 module.exports = [
     {
         action: "industry",
-        message: 'You selected the *Lagos* option: \n\nWhat industry do you work?',
+        message: 'You selected the *Private* option: \n\nWhat industry do you work?',
         feedback_type: 'input',
         actionService: initialize,
         next_action: "is_confirmed_staff" 
@@ -14,15 +14,22 @@ module.exports = [
         feedback_type: 'input',
         actionService: saveIndustry,
         previous_action: "industry",
-        next_action: "full_name"
+        next_action: "location"
     },
-      
+    {
+        action: "location",
+        message: "What is your location?",
+        feedback_type: 'input',
+        actionService: saveIsConfirmed,
+        previous_action: "loan_tenor",
+        next_action: "full_name"
+    },       
     {
         action: "full_name",
         message: "Kindly confirm your name and surname:",
         feedback_type: 'input',
-        actionService: saveIsConfirmed,
-        previous_action: "is_confirmed_staff",
+        actionService: saveLocation,
+        previous_action: "location",
         next_action: "close_session"
     },        
     {

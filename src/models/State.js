@@ -32,8 +32,26 @@ const db = require('../db');
     })    
 }
 
+const getRecord = (session_hash) => {
+
+    let query = "SELECT * FROM `state_requests` WHERE session_hash =  '"+ session_hash + "'";
+
+
+    return new Promise( data => db.query(query, (err, res) => {
+
+
+            if(err) {
+                console.log(err, 'SEEE');
+                data({});
+                return false;
+            };
+
+            data(res);
+        }));   
+}
 
 module.exports = {
     initializeRequest,
-    updateRecord
+    updateRecord,
+    getRecord
 }

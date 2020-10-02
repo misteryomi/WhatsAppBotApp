@@ -14,6 +14,7 @@ var active_intent = '';
 
 
 function getFeedback(keyword, phone) {
+    console.log({active_intent, feedbacks});
     let response = {
         message: `Sorry, we could not catch that. \n\n${welcomeText}`,
         initial_intent: 'welcome',
@@ -22,15 +23,26 @@ function getFeedback(keyword, phone) {
     for(let i = 0; i <= feedbacks.length; i++) {
         let feedback = feedbacks[i];
 
-        if(active_intent == 'loan' && feedback.sub && feedback.sub.length > 0) {
+
+        if(active_intent == 'loan' && feedback.initial_intent == 'loan' && feedback.sub && feedback.sub.length > 0) {
             let sub = feedback.sub.filter((f) => {
                 return f.keywords.includes(keyword.toLowerCase())
             })[0];
+            console.log('sub is here', sub); 
+
             if(sub) {
                 response = sub;
             }
             break;
-        } else {
+        } 
+        else if(active_intent == 'complaint' && feedback.initial_intent == 'complaint' && feedback.sub && feedback.sub.length > 0) {
+            response = feedback.sub[0];
+            console.log('i am here', response); 
+                // context.console.log(response);
+
+            break;
+        }
+        else {
             if(feedback && feedback.keywords.includes(keyword.toLowerCase())) {
                 response = feedback;
                 break;
@@ -38,8 +50,11 @@ function getFeedback(keyword, phone) {
         }
     }
 
+    console.log({response, active_intent}, 'under get feedback')
+
     if(response.initial_intent) {
         active_intent = response.initial_intent;
+        console.log({active_intent});
     }
 
     if(response.initial_action) {
@@ -106,22 +121,23 @@ async function sendResponse(context, event) {
             session = await getUserSession(phone);
         }
 
-        console.log({session})
+        console.log({session}, 'user session')
         if(session.next_action || session.next_action !== 'undefined') {
             next_action = session.next_action;                
         }
 
-        console.log({next_action});
+        console.log({next_action}, 'user next action');
 
 
         if(next_action) {
             feedback = getActionFeedback(action_feedbacks, next_action, q, phone, session.session_hash, context);
             // next_action = feedback.next_action;
+            console.log({feedback}, 'init feedback')
             updateSessionNextAction(feedback.next_action);
 
         } else {                
             feedback = getFeedback(q, phone);
-            // console.log({feedback})
+            console.log({feedback}, 'other feedback')
 
             if(feedback.action) {
                 action_feedbacks = feedback.action;

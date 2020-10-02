@@ -1,9 +1,9 @@
 
 const db = require('../db');
 
-const initializeRequest = (phone_no, oracle_number, session_hash) => {
+const initializeRequest = (phone_no, session_hash) => {
 
-    let query = "INSERT into `private_requests` (phone_no, oracle_number, session_hash) VALUES ('" + phone_no + "', '" + oracle_number + "', '"+session_hash+"')";
+    let query = "INSERT into `private_requests` (phone_no, session_hash) VALUES ('" + phone_no + "', '"+session_hash+"')";
 
     db.query(query, (err, res) => {
         console.log({err, res})
@@ -35,8 +35,25 @@ const updateRecord = (phone_no, field, value, session_hash) => {
     })    
 }
 
+const getRecord = (session_hash) => {
+
+    let query = "SELECT * FROM `private_requests` WHERE session_hash =  '"+ session_hash + "'";
+
+    return new Promise( data => db.query(query, (err, res) => {
+
+
+            if(err) {
+                console.log(err, 'SEEE');
+                data({});
+                return false;
+            };
+
+            data(res);
+        }));   
+}
 
 module.exports = {
     initializeRequest,
-    updateRecord
+    updateRecord,
+    getRecord,
 }

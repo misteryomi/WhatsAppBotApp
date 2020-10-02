@@ -14,7 +14,8 @@ const {
 const {
     federalAction,
     stateAction,
-    privateAction
+    privateAction,
+    complaintAction,
 } = require('./actions');
 const initializeSession = require('../actions/initializeSession');
 const default_inputs = require('./default_inputs');
@@ -84,7 +85,14 @@ module.exports = [
     {
         keywords: ['4'],
         message: complaintText,
-        initial_intent: 'complaint'
+        initial_intent: 'complaint',
+        sub: [
+            {
+                // keywords: ['1'],
+                action: complaintAction,
+                intent: 'full_name'
+            },
+        ]
         // is_welcome: true
     },
 
